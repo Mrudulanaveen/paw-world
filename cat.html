@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dog Portal</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-image: radial-gradient(aqua, pink);
+    min-height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 220px;
+    height: 100vh;
+    background-color: #0b4f6c;
+    padding-top: 30px;
+    color: white;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 100;
+}
+
+.sidebar h2 {
+    text-align: center;
+    color: #ffcc00;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    padding: 15px 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    cursor: pointer;
+}
+
+.sidebar ul li:hover {
+    background-color: #ff8c00;
+}
+
+/* Content Area */
+.content {
+    margin-left: 240px;
+    padding: 30px;
+    margin-right: 320px; /* Space for the fixed cart */
+}
+
+.content h1 {
+    text-align: center;
+    color: #0b4f6c;
+}
+
+/* Cards Container (Used for Breeds, Portal, and Toys) */
+.card-container, .toys {
+    display: none; /* Hidden by default */
+    margin-top: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 0.3fr));
+    gap: 25px;
+    justify-content: center;
+}
+
+/* Base Card Style */
+.card {
+    background: white;
+    border-radius: 15px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+}
+
+.card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.card h3 {
+    color: #0b4f6c;
+    margin: 10px 0;
+}
+
+/* Button Styling for Toys */
+.card button {
+    background-color: #ff8c00;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.card button:hover {
+    background-color: #0b4f6c;
+}
+
+/* Cart Styling */
+.cart {
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 280px;
+    height: 100vh;
+    background: white;
+    box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #eee;
+}
+
+.qty-btn {
+    padding: 2px 8px;
+    cursor: pointer;
+}
+
+.pay-btn {
+    width: 100%;
+    padding: 10px;
+    background: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+/* Essentials Cards Only */
+.essential {
+  
+    display: none;
+    margin-top: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 180px));
+    gap: 20px;
+    justify-content: center;
+
+
+}
+
+/* Smaller card size ONLY for essentials */
+.essential .card {
+    padding: 10px;
+}
+
+.essential .card img {
+    height: 140px;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- Sidebar -->
+<nav class="sidebar">
+    <h2>Cat🐱</h2>
+    <ul>
+        <li onclick="showBreeds()">Copulation Breeds</li>
+        <li onclick="showPortal()">Pet Portal</li>
+        <li onclick="showToys()">Pet Toys</li>
+        <li onclick="showEssentials()">Furry essentials</li>
+        
+    </ul>
+</nav>
+
+<!-- Content -->
+<div class="content">
+    <h1 id="title">Welcome to cat Section</h1>
+    <p id="subtitle" style="text-align:center;">
+        Click a category from the left menu
+    </p>
+
+    <!-- Copulation Breeds -->
+    <div class="card-container" id="breedCards">
+        <div class="card">
+            <img src="C:\Users\mrudu\OneDrive\Desktop\ragdoll.jpg">
+            <h3>Ragdoll</h3>
+            <p>Age: 4.5 Years</p>
+            <p>Gender: Male</p>
+        </div>
+        <div class="card">
+            <img src="C:\Users\mrudu\OneDrive\Desktop\tobby.webp">
+            <h3>Tobby</h3>
+            <p>Age: 3 Years</p>
+            <p>Gender: Female</p>
+        </div>
+        <div class="card">
+            <img src="C:\Users\mrudu\OneDrive\Desktop\bald.jpg">
+            <h3>Peterbald</h3>
+            <p>Age: 2.5 Years</p>
+            <p>Gender: Male</p>
+        </div>
+    </div>
+
+    <!-- Pet Portal -->
+    <div class="card-container" id="portalcards">
+        <div class="card">
+            <img src="C:\Users\mrudu\OneDrive\Desktop\snow.webp">
+            <h3>Snowshoe</h3>
+            <p>Age: 2 Years</p>
+            <p>Gender: Male</p>
+        </div>
+        <div class="card">
+            <img src="C:\Users\mrudu\OneDrive\Desktop\british.jpg">
+            <h3>Silver Shaded British Shorthair</h3>
+            <p>Age: 1.5 Years</p>
+            <p>Gender: Female</p>
+        </div>
+        <div class="card">
+            <img src="C:\Users\mrudu\OneDrive\Desktop\black.jpg">
+            <h3>Black Tortie Maine</h3>
+            <p>Age: 3.5 Years</p>
+            <p>Gender: Male</p>
+        </div>
+    </div>
+
+    <!-- Pet Toys (Now styled to match Portal Cards) -->
+    <div class="toys" id="toyCards">
+        <div class="card">
+            <img src="C:\Users\mrudu\OneDrive\Desktop\feather.png">
+            <h3>Feather wand </h3>
+            <span>₹199</span><br>
+            <button onclick="addItem('Feather wand', 129)">Add to Cart</button>
+        </div>
+
+        <div class="card">
+            <img src="C:\Users\mrudu\OneDrive\Desktop\mouse.png">
+            <h3>Squeaky mouse toy</h3>
+            <span>₹449</span><br>
+            <button onclick="addItem('Squeaky mouse toy', 349)">Add to Cart</button>
+        </div>
+
+        <div class="card">
+            <img src="C:\Users\mrudu\OneDrive\Desktop\ball.png">
+            <h3>Interactive plastic ball</h3>
+            <span>₹200</span><br>
+            <button onclick="addItem('Interactive plastic ball', 299)">Add to Cart</button>
+        </div>
+    </div>
+</div>
+
+<!-- Cart -->
+<div class="cart">
+    <h2>🛒 Cart</h2>
+    <div id="cartItems"></div>
+    <h3>Total: ₹<span id="total">0</span></h3>
+    <button class="pay-btn" onclick="payNow()">Pay Now</button>
+</div>
+<div class="essential" id="essentialcards">
+        <div class="card">
+            <img src="C:\Users\mrudu\OneDrive\Pictures\Screenshots\catshampoo.png">
+            <h3>shampoo</h3>
+            <span>₹529</span><br>
+            <button onclick="addItem('shampoo', 129)">Add to Cart</button>
+        </div>
+
+        <div class="card">
+            <img src="C:\Users\mrudu\OneDrive\Desktop\ca bis.png">
+            <h3>biscuits</h3>
+            <span>₹349</span><br>
+            <button onclick="addItem('biscuits', 349)">Add to Cart</button>
+        </div>
+
+        <div class="card">
+            <img src="C:\Users\mrudu\OneDrive\Pictures\Screenshots\Screenshot 2025-12-19 223404.png">
+            <h3>neck bell</h3>
+            <span>₹299</span><br>
+            <button onclick="addItem('neck bell', 299)">Add to Cart</button>
+        </div>
+    </div>
+</div>
+
+<!-- Cart -->
+
+
+
+<script>
+let cart = {};
+let total = 0;
+
+/* Add item to cart */
+function addItem(name, price) {
+    if (cart[name]) {
+        cart[name].qty += 1;
+    } else {
+        cart[name] = {
+            price: price,
+            qty: 1
+        };
+    }
+    updateCart();
+}
+
+/* Increase quantity */
+function increase(name) {
+    cart[name].qty += 1;
+    updateCart();
+}
+
+/* Decrease quantity */
+function decrease(name) {
+    cart[name].qty -= 1;
+
+    if (cart[name].qty === 0) {
+        delete cart[name];
+    }
+    updateCart();
+}
+
+/* Update cart UI & total */
+function updateCart() {
+    const cartDiv = document.getElementById("cartItems");
+    cartDiv.innerHTML = "";
+    total = 0;
+
+    for (let item in cart) {
+        let itemTotal = cart[item].price * cart[item].qty;
+        total += itemTotal;
+
+        cartDiv.innerHTML += `
+            <div class="cart-item">
+                <span>${item} (₹${cart[item].price})</span>
+                <div>
+                    <button onclick="decrease('${item}')">−</button>
+                    ${cart[item].qty}
+                    <button onclick="increase('${item}')">+</button>
+                </div>
+            </div>
+        `;
+    }
+
+    document.getElementById("total").innerText = total;
+}
+
+/* Pay and clear cart */
+function payNow() {
+    if (total === 0) {
+        alert("🛒 Cart is empty!");
+        return;
+    }
+
+    alert("✅ Payment Successful!\nAmount Paid: ₹" + total);
+    cart = {};
+    updateCart();
+}
+
+
+
+
+// Navigation Logic
+function hideAll() {
+    document.getElementById("breedCards").style.display = "none";
+    document.getElementById("portalcards").style.display = "none";
+    document.getElementById("toyCards").style.display = "none";
+    document.getElementById("essentialcards").style.display="none";
+}
+
+function showBreeds() {
+    hideAll();
+    document.getElementById("breedCards").style.display = "grid";
+    document.getElementById("title").innerText = "Copulation Breeds";
+    document.getElementById("subtitle").innerText = "Available dogs for breeding";
+}
+
+function showPortal() {
+    hideAll();
+    document.getElementById("portalcards").style.display = "grid";
+    document.getElementById("title").innerText = "Pet Portal";
+    document.getElementById("subtitle").innerText = "Available dogs for sale";
+}
+
+function showToys() {
+    hideAll();
+    document.getElementById("toyCards").style.display = "grid";
+    document.getElementById("title").innerText = "Pet Toys";
+    document.getElementById("subtitle").innerText = "Fun toys for your furry friend";
+}
+function showEssentials() {
+    hideAll();
+    document.getElementById("essentialcards").style.display = "grid";
+    document.getElementById("title").innerText = "Furry essentials";
+    document.getElementById("subtitle").innerText = "Daily care products for pets";
+}
+
+</script>
+
+</body>
+</html>

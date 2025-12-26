@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings</title>
+
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, Helvetica, sans-serif;
+            background: radial-gradient(aqua, pink);
+           
+        }
+
+        .settings-card {
+            width: 300px;
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .settings-card h2 {
+            text-align: center;
+            margin-bottom: 15px;
+            color: #ff1493;
+        }
+
+        .setting-item {
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 15px;
+            color: #333;
+        }
+
+        .setting-item:hover {
+            background: #ffe6f2;
+            transform: translateX(5px);
+        }
+
+        .danger {
+            color: red;
+            font-weight: bold;
+        }
+
+        .danger:hover {
+            background: #ffe5e5;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="settings-card">
+        <h2>Settings</h2>
+
+        <div class="setting-item">Edit Profile</div>
+        <div class="setting-item">Change Password</div>
+        <div class="setting-item">Notifications</div>
+        <div class="setting-item">Log Out</div>
+        <div class="setting-item danger">Delete Account</div>
+    </div>
+
+</body>
+</html>
